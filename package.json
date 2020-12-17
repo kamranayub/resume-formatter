@@ -1,0 +1,19 @@
+{
+  "name": "resume-formatter",
+  "version": "1.0.0",
+  "description": "Format a resume using my custom template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamranayub/resume-formatter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kamranayub/resume-formatter/issues"
+  },
+  "homepage": "https://github.com/kamranayub/resume-formatter#readme"
+}
