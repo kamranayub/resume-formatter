@@ -1,10 +1,26 @@
+<script>
+import TextEditor from "./editors/TextEditor";
+
+export default {
+  data() {
+    return {
+      fullName: "Full Name",
+      byline: "Byline",
+    };
+  },
+  components: {
+    TextEditor,
+  },
+};
+</script>
+
 <template>
   <div class="resume">
     <header>
       <section>
         <h1>
-          Full Name
-          <small>Byline</small>
+          <text-editor v-bind:value="fullName"></text-editor>
+          <small>{{ byline }}</small>
         </h1>
       </section>
 
@@ -54,19 +70,13 @@
           </ul>
         </div>
 
-        <p class="inline-skills">
-          Skills used in role
-        </p>
+        <p class="inline-skills">Skills used in role</p>
 
         <div class="words">
           <!--<img class="right" src="img/icon.svg" width="90" />-->
 
-          <p>
-            Role overview and accomplishments
-          </p>
-
+          <p>Role overview and accomplishments</p>
         </div>
-
       </div>
     </section>
     <section class="page-break">
@@ -79,28 +89,20 @@
           <p>Section byline</p>
 
           <ul class="skills">
-            <li>
-              List item
-            </li>
-            
+            <li>List item</li>
           </ul>
-
         </div>
         <div class="half right">
-         <h4>Section heading</h4>
+          <h4>Section heading</h4>
 
           <p>Section byline</p>
 
           <ul class="skills">
-            <li>
-              List item
-            </li>
-            
+            <li>List item</li>
           </ul>
         </div>
       </div>
     </section>
-
 
     <section>
       <h2>Education</h2>
@@ -110,9 +112,8 @@
           <div class="section-desc">
             <h3>School</h3>
             <p>
-              <em>Department</em> <br />Degree,
-              Major in <strong>Major</strong> and minor
-              in <strong>Minor</strong>
+              <em>Department</em> <br />Degree, Major in
+              <strong>Major</strong> and minor in <strong>Minor</strong>
             </p>
           </div>
           <ul class="section-date">
