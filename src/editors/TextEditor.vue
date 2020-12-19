@@ -1,5 +1,6 @@
 <script>
 export default {
+  name: 'TextEditor',
   props: ["modelValue"],
   emits: ["update:modelValue"],
   data() {

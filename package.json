@@ -1,19 +1,15 @@
 {
   "name": "resume-formatter",
-  "version": "1.0.0",
-  "description": "Format a resume using my custom template",
-  "main": "index.js",
+  "version": "0.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kamranayub/resume-formatter.git"
+  "dependencies": {
+    "vue": "^3.0.4"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kamranayub/resume-formatter/issues"
-  },
-  "homepage": "https://github.com/kamranayub/resume-formatter#readme"
+  "devDependencies": {
+    "vite": "^1.0.0-rc.13",
+    "@vue/compiler-sfc": "^3.0.4"
+  }
 }
