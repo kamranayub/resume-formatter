@@ -1,16 +1,35 @@
 <script>
 import TextEditor from "./editors/TextEditor.vue";
 
+const STORAGE_CONTAINER = "resume-0.1";
+
 export default {
   name: "App",
   data() {
-    return {
+    const DEFAULTS = {
       fullName: "Full Name",
       byline: "Byline",
+      aboutMe: "Introduction and overview",
     };
+
+    let dataFromStorage;
+    if (window.localStorage) {
+      dataFromStorage = window.localStorage.getItem(STORAGE_CONTAINER);
+      if (dataFromStorage) {
+        dataFromStorage = JSON.parse(dataFromStorage);
+        return { ...DEFAULTS, ...dataFromStorage };
+      }
+    }
+
+    return DEFAULTS;
   },
   updated() {
-    console.log(this.$data);
+    if (window.localStorage) {
+      window.localStorage.setItem(
+        STORAGE_CONTAINER,
+        JSON.stringify(this.$data)
+      );
+    }
   },
   components: {
     TextEditor,
@@ -39,7 +58,7 @@ export default {
       <h2>About Me</h2>
 
       <div class="content words">
-        <p>Overview and introduction</p>
+        <p><text-editor v-model="aboutMe" /></p>
       </div>
     </section>
 

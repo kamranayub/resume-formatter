@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'TextEditor',
+  name: "TextEditor",
   props: ["modelValue"],
   emits: ["update:modelValue"],
   data() {
@@ -11,6 +11,10 @@ export default {
   methods: {
     enableEditing() {
       this.editing = true;
+      this.$nextTick(function () {
+        this.$refs.textInput.focus();
+        document.execCommand("selectAll", null, false);
+      });
     },
     endEditing() {
       this.editing = false;
@@ -20,11 +24,20 @@ export default {
 </script>
 
 <template>
-  <input
-    v-if="editing"
-    :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value)"
-    @blur="endEditing"
-  />
-  <span @click="enableEditing" v-else>{{ modelValue }}</span>
+  <span class="editor text">
+    <input
+      ref="textInput"
+      v-show="editing"
+      :value="modelValue"
+      @change="$emit('update:modelValue', $event.target.value)"
+      @blur="endEditing"
+    />
+    <span @click="enableEditing" v-show="!editing">{{ modelValue }}</span>
+  </span>
 </template>
+
+<style scoped>
+.editor:hover {
+  outline: 1px solid gray;
+}
+</style>
