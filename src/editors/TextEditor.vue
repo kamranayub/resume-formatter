@@ -3,21 +3,13 @@ export default {
   name: "TextEditor",
   props: ["modelValue"],
   emits: ["update:modelValue"],
-  data() {
-    return {
-      editing: false,
-    };
-  },
   methods: {
     enableEditing() {
-      this.editing = true;
-      this.$nextTick(function () {
-        this.$refs.textInput.focus();
-        document.execCommand("selectAll", null, false);
-      });
+      document.execCommand("selectAll", null, false);
     },
     endEditing() {
-      this.editing = false;
+      const html = this.$refs.textValue.innerHTML;
+      this.$emit("update:modelValue", html);
     },
   },
 };
@@ -25,14 +17,13 @@ export default {
 
 <template>
   <span class="editor text">
-    <input
-      ref="textInput"
-      v-if="editing"
-      :value="modelValue"
-      @change="$emit('update:modelValue', $event.target.value)"
+    <span
+      ref="textValue"
+      @click="enableEditing"
       @blur="endEditing"
-    />
-    <span @click="enableEditing" v-else>{{ modelValue }}</span>
+      contenteditable="true"
+      >{{ modelValue }}</span
+    >
   </span>
 </template>
 
