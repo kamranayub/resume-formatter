@@ -27,12 +27,12 @@ export default {
   <span class="editor text">
     <input
       ref="textInput"
-      v-show="editing"
+      v-if="editing"
       :value="modelValue"
       @change="$emit('update:modelValue', $event.target.value)"
       @blur="endEditing"
     />
-    <span @click="enableEditing" v-show="!editing">{{ modelValue }}</span>
+    <span @click="enableEditing" v-else>{{ modelValue }}</span>
   </span>
 </template>
 
