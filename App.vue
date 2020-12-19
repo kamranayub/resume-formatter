@@ -8,6 +8,9 @@ export default {
       byline: "Byline",
     };
   },
+  updated() {
+    console.log(this.$data);
+  },
   components: {
     TextEditor,
   },
@@ -19,8 +22,8 @@ export default {
     <header>
       <section>
         <h1>
-          <text-editor v-bind:value="fullName"></text-editor>
-          <small>{{ byline }}</small>
+          <text-editor v-model="fullName" />
+          <small><text-editor v-model="byline" /></small>
         </h1>
       </section>
 
