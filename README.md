@@ -4,9 +4,9 @@ Some friends keep asking me to format their resume like mine so why not make it 
 
 ## Contributing
 
-Quick prototyping:
+Uses [vitejs](https://github.com/vitejs/vite) for quick local development.
 
 ```sh
-yarn global add @vue/cli @vue/cli-service-global
-vue serve
+yarn
+yarn dev
 ```
