@@ -97,6 +97,17 @@ header h1 small {
   color: #808080;
   margin-top: 0.5em;
 }
+header ul li button {
+  visibility: hidden;
+}
+header ul li:hover button,
+header ul li:focus-within button {
+  visibility: visible;
+}
+header ul:hover li:last-child button,
+header ul:focus-within li:last-child button {
+  visibility: visible;
+}
 
 /**
  * Header responsive styles

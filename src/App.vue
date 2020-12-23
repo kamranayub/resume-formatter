@@ -79,7 +79,7 @@ export default {
         </li>
         <li>
           <button class="hide-print" @click="addContactInfo">
-            + add contact info
+            <i class="fa fa-plus-circle"></i> add contact info
           </button>
         </li>
       </ul>
