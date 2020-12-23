@@ -189,6 +189,13 @@ header ul:focus-within li:last-child button {
   padding-top: 1em;
   border-top: 3px double #dadada;
 }
+.resume > section h2 button {
+  visibility: hidden;
+}
+.resume > section:hover h2 button,
+.resume > section:focus-within h2 button {
+  visibility: visible;
+}
 .resume > section h2 img {
   max-width: 90%;
 }
