@@ -32,6 +32,13 @@ const DEFAULTS = {
       ],
     },
   ],
+  education: {
+    school: "School of Subtle Knox",
+    byline: "College of Socks on Fox",
+    degree: "Bachelors of Tweedle Beedle Puddle Battles",
+    location: "Grox, MT",
+    date: "May 2010",
+  },
 };
 
 export default {
@@ -235,15 +242,15 @@ export default {
       <div class="content">
         <div class="section-header orphan">
           <div class="section-desc">
-            <h3>School</h3>
+            <h3><text-editor v-model="education.school" /></h3>
             <p>
-              <em>Department</em> <br />Degree, Major in
-              <strong>Major</strong> and minor in <strong>Minor</strong>
+              <em><text-editor v-model="education.byline" /></em>
+              <br /><text-editor v-model="education.degree" />
             </p>
           </div>
           <ul class="section-date">
-            <li>Location</li>
-            <li>Graduation date</li>
+            <li><text-editor v-model="education.location" /></li>
+            <li><text-editor v-model="education.date" /></li>
           </ul>
         </div>
       </div>
