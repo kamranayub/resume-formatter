@@ -98,6 +98,9 @@ button.add-section {
     margin-top: -1.3em;
   }
 }
+button.add-section-group {
+  margin-bottom: 2em;
+}
 
 /**
  * Header styles

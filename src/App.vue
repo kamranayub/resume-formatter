@@ -141,6 +141,22 @@ export default {
     removeSection(index) {
       this.sections.splice(index, 1);
     },
+    addSectionGroup(section) {
+      section.groups.push({
+        ...DEFAULTS.sections[0].groups[0],
+      });
+    },
+    removeSectionGroup(section, index) {
+      section.groups.splice(index, 1);
+    },
+    addSectionGroupListItem(group) {
+      group.items.push({
+        ...DEFAULTS.sections[0].groups[0].items[0],
+      });
+    },
+    removeSectionGroupListItem(group, index) {
+      group.items.splice(index, 1);
+    },
   },
   components: {
     TextEditor,
@@ -275,16 +291,40 @@ export default {
       </h2>
 
       <div class="content">
-        <div class="half" v-for="group in section.groups">
+        <div class="half" v-for="(group, index) in section.groups">
           <h4><text-editor v-model="group.heading" /></h4>
 
           <p><text-editor v-model="group.byline" /></p>
 
           <ul class="skills">
-            <li v-for="item in group.items">
+            <li v-for="(item, index) in group.items">
               <text-editor v-model="item.text" />
+              <button
+                @click="removeSectionGroupListItem(group, index)"
+                title="remove list item"
+                aria-label="remove list item"
+              >
+                <i class="fa fa-minus-circle"></i>
+              </button>
+            </li>
+            <li>
+              <button @click="addSectionGroupListItem(group)">
+                <i class="fa fa-plus-circle"></i> add list item
+              </button>
             </li>
           </ul>
+          <button
+            @click="removeSectionGroup(section, index)"
+            title="remove section group"
+            aria-label="remove section group"
+          >
+            <i class="fa fa-minus-circle"></i> remove group
+          </button>
+        </div>
+        <div class="half hide-print">
+          <button class="add-section-group" @click="addSectionGroup(section)">
+            <i class="fa fa-plus-circle"></i> add group
+          </button>
         </div>
       </div>
     </section>
