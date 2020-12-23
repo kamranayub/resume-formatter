@@ -32,6 +32,23 @@ const DEFAULTS = {
       ],
     },
   ],
+  sections: [
+    {
+      name: "Section",
+      groups: [
+        {
+          heading: "Section heading",
+          byline: "Section byline",
+          items: [{ text: "List item" }],
+        },
+        {
+          heading: "Section heading",
+          byline: "Section byline",
+          items: [{ text: "List item" }],
+        },
+      ],
+    },
+  ],
   education: {
     school: "School of Subtle Knox",
     byline: "College of Socks on Fox",
@@ -97,6 +114,9 @@ export default {
       employer.positions.push({
         ...DEFAULTS.history[0].positions[0],
       });
+    },
+    addSection() {
+      this.sections.push({ ...DEFAULTS.sections[0] });
     },
   },
   components: {
@@ -210,30 +230,28 @@ export default {
         </p>
       </div>
     </section>
-    <section class="page-break">
-      <h2>Section</h2>
+
+    <section class="page-break" v-for="section in sections">
+      <h2><text-editor v-model="section.name" /></h2>
 
       <div class="content">
-        <div class="half left">
-          <h4>Section heading</h4>
+        <div class="half" v-for="group in section.groups">
+          <h4><text-editor v-model="group.heading" /></h4>
 
-          <p>Section byline</p>
-
-          <ul class="skills">
-            <li>List item</li>
-          </ul>
-        </div>
-        <div class="half right">
-          <h4>Section heading</h4>
-
-          <p>Section byline</p>
+          <p><text-editor v-model="group.byline" /></p>
 
           <ul class="skills">
-            <li>List item</li>
+            <li v-for="item in group.items">
+              <text-editor v-model="item.text" />
+            </li>
           </ul>
         </div>
       </div>
     </section>
+
+    <button class="add-section" @click="addSection">
+      <i class="fa fa-plus-circle"></i> add section
+    </button>
 
     <section>
       <h2>Education</h2>

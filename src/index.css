@@ -60,12 +60,7 @@ ul {
 @media print, (min-width: 1070px) {
   .half {
     width: 50%;
-  }
-  .left {
     float: left;
-  }
-  .right {
-    float: right;
   }
 }
 
@@ -77,6 +72,19 @@ ul {
 }
 .top-of-page button {
   margin: 0 1em;
+}
+
+/**
+ * buttons
+ */
+button.add-section {
+  position: relative;
+  left: 17%;
+  margin-left: 1em;
+  top: -1em;
+}
+button.add-section + section {
+  margin-top: -1.3em;
 }
 
 /**
