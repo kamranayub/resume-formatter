@@ -60,14 +60,6 @@ export default {
 
       <ul id="contact">
         <li v-for="(link, index) in links">
-          <i
-            v-if="link.iconClass"
-            class="fa fa-icon"
-            :class="[link.iconClass]"
-          ></i>
-          <text-editor v-model="link.text" /><span v-if="link.url"
-            >/<a href="{{link.url}}">{{ link.path }}</a></span
-          >
           <button
             class="hide-print"
             @click="removeContactInfo(index)"
@@ -76,6 +68,7 @@ export default {
           >
             <i class="fa fa-minus-circle"></i>
           </button>
+          <text-editor v-model="link.text" />
         </li>
         <li>
           <button class="hide-print" @click="addContactInfo">
