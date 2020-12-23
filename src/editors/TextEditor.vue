@@ -17,18 +17,27 @@ export default {
 
 <template>
   <span class="editor text">
-    <span
-      ref="textValue"
-      @click="enableEditing"
-      @blur="endEditing"
-      contenteditable="true"
-      >{{ modelValue }}</span
-    >
+    <span class="editor-inner">
+      <span
+        ref="textValue"
+        @click="enableEditing"
+        @blur="endEditing"
+        contenteditable="true"
+        >{{ modelValue }}</span
+      >
+    </span>
   </span>
 </template>
 
 <style scoped>
-.editor:hover {
-  outline: 1px solid gray;
+.editor-inner {
+  display: inline-block;
+  margin: 1px;
+}
+
+.editor:hover .editor-inner {
+  box-shadow: 0 0 3px gray;
+  border-radius: 3px;
+  background: rgba(245, 227, 66, 0.2);
 }
 </style>
