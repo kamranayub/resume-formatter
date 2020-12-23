@@ -37,6 +37,6 @@ export default {
 .editor:hover .editor-inner {
   box-shadow: 0 0 3px gray;
   border-radius: 3px;
-  background: rgba(245, 227, 66, 0.1);
+  background: var(--color-highlight);
 }
 </style>

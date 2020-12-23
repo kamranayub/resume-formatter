@@ -1,3 +1,7 @@
+:root {
+  --color-highlight: rgb(255, 254, 235);
+}
+
 body {
   padding: 1em;
   max-width: 1280px;
@@ -77,6 +81,7 @@ ul {
 }
 .top-of-page button {
   margin: 0 1em;
+  font-size: 1em;
 }
 @media print {
   .top-of-page {
@@ -87,6 +92,17 @@ ul {
 /**
  * buttons
  */
+.resume button {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background: white;
+  padding: 0.25em 0.5em;
+  transition: background 200ms;
+}
+.resume button:hover {
+  background: var(--color-highlight);
+}
+
 button.add-section {
   position: relative;
   left: 17%;
@@ -97,9 +113,6 @@ button.add-section {
   button.add-section + section {
     margin-top: -1.3em;
   }
-}
-button.add-section-group {
-  margin-bottom: 2em;
 }
 
 /**
@@ -263,6 +276,40 @@ header ul:focus-within li:last-child button {
 .resume > section .highlight {
   margin-left: 2em;
   color: #666;
+}
+.resume > section .half {
+  position: relative;
+}
+.resume > section .half:last-child {
+  text-align: center;
+}
+.resume > section .half:last-child button {
+  border: 1px dashed #ccc;
+  border-radius: 3px;
+  margin-bottom: 2em;
+  padding: 1em 0.5em;
+  background: transparent;
+  width: 85%;
+}
+.resume > section .half:last-child button:hover {
+  background: var(--color-highlight);
+}
+.resume > section .half:not(:last-child) > button {
+  visibility: hidden;
+  position: absolute;
+  top: 0.5em;
+  right: 1em;
+}
+.resume > section .half:focus-within > button,
+.resume > section .half:hover > button {
+  visibility: visible;
+}
+.resume > section .half .skills li:not(:last-child) button {
+  visibility: hidden;
+}
+.resume > section .half .skills li:hover:not(:last-child) button,
+.resume > section .half .skills li:focus-within:not(:last-child) button {
+  visibility: visible;
 }
 
 /**

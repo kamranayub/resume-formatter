@@ -1,6 +1,7 @@
 <script>
 import TextEditor from "./editors/TextEditor.vue";
 
+const YEAR = new Date().getFullYear();
 const STORAGE_CONTAINER = "resume-0.1";
 const DEFAULTS = {
   fullName: "Fox",
@@ -31,7 +32,7 @@ Do, sir.`,
     {
       employer: "Dr. Seuss, Inc.",
       location: "Ann Arbor, MI",
-      start: "Sep 2010",
+      start: `Jan ${YEAR}`,
       end: "Present",
       positions: [
         {
@@ -40,7 +41,7 @@ Do, sir.`,
           skills: "Tongue twisters, tweedle beedle battler, puddle muddler",
           description:
             "Makes parents read his book to his kids all day every day",
-          start: "Sep 2010",
+          start: `Jan ${YEAR}`,
           end: "Present",
         },
       ],
@@ -51,13 +52,13 @@ Do, sir.`,
       name: "Section",
       groups: [
         {
-          heading: "Section heading",
-          byline: "Section byline",
+          heading: "Group heading",
+          byline: "Group byline",
           items: [{ text: "List item" }],
         },
         {
-          heading: "Section heading",
-          byline: "Section byline",
+          heading: "Group heading",
+          byline: "Group byline",
           items: [{ text: "List item" }],
         },
       ],
@@ -68,7 +69,7 @@ Do, sir.`,
     byline: "College of Socks on Fox",
     degree: "Bachelors of Tweedle Beedle Puddle Battles",
     location: "Grox, MT",
-    date: "May 2010",
+    date: `May ${YEAR - 1}`,
   },
 };
 
@@ -166,10 +167,10 @@ export default {
 
 <template>
   <div class="top-of-page">
+    <button @click="print"><i class="fa fa-print"></i> Print to PDF</button>
     <button @click="reset">
       <i class="fa fa-trash-restore"></i> Start over
     </button>
-    <button @click="print"><i class="fa fa-print"></i> Print to PDF</button>
   </div>
 
   <div class="resume">
@@ -307,7 +308,7 @@ export default {
                 <i class="fa fa-minus-circle"></i>
               </button>
             </li>
-            <li>
+            <li class="hide-print">
               <button @click="addSectionGroupListItem(group)">
                 <i class="fa fa-plus-circle"></i> add list item
               </button>
