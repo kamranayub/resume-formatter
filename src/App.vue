@@ -125,7 +125,7 @@ export default {
       });
     },
     removeEmployer(index) {
-      this.history.splice(index, 1)
+      this.history.splice(index, 1);
     },
     addPosition(employer) {
       employer.positions.push({
@@ -137,6 +137,9 @@ export default {
     },
     addSection() {
       this.sections.push({ ...DEFAULTS.sections[0] });
+    },
+    removeSection(index) {
+      this.sections.splice(index, 1);
     },
   },
   components: {
@@ -250,8 +253,8 @@ export default {
           </p>
 
           <button @click="removeEmployer(index)">
-              <i class="fa fa-minus-circle"></i> remove employer
-            </button>
+            <i class="fa fa-minus-circle"></i> remove employer
+          </button>
         </div>
         <p>
           <button @click="addEmployer">
@@ -261,8 +264,15 @@ export default {
       </div>
     </section>
 
-    <section class="page-break" v-for="section in sections">
-      <h2><text-editor v-model="section.name" /></h2>
+    <section class="page-break" v-for="(section, index) in sections">
+      <h2>
+        <text-editor v-model="section.name" /><br /><button
+          @click="removeSection(index)"
+        >
+          <i class="fa fa-minus-circle"></i>
+          remove section
+        </button>
+      </h2>
 
       <div class="content">
         <div class="half" v-for="group in section.groups">
