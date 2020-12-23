@@ -81,6 +81,16 @@ export default {
     removeContactInfo(index) {
       this.links.splice(index, 1);
     },
+    addEmployer() {
+      this.history.push({
+        ...DEFAULTS.history[0],
+      });
+    },
+    addPosition(employer) {
+      employer.positions.push({
+        ...DEFAULTS.history[0].positions[0],
+      });
+    },
   },
   components: {
     TextEditor,
@@ -93,7 +103,7 @@ export default {
     <button @click="reset">Start over</button>
     <button @click="print">Print to PDF</button>
   </div>
-  
+
   <div class="resume">
     <header>
       <section>
@@ -180,7 +190,18 @@ export default {
               <text-editor v-model="position.description" />
             </div>
           </div>
+
+          <p>
+            <button class="hide-print" @click="addPosition(item)">
+              <i class="fa fa-plus-circle"></i> add position
+            </button>
+          </p>
         </div>
+        <p>
+          <button class="hide-print" @click="addEmployer">
+            <i class="fa fa-plus-circle"></i> add employer
+          </button>
+        </p>
       </div>
     </section>
     <section class="page-break">

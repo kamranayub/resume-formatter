@@ -220,6 +220,9 @@ header ul:focus-within li:last-child button {
   clear: none;
   font-size: 0.9em;
 }
+.resume > section .content .words {
+  margin-bottom: 1em;
+}
 .resume > section .content ul {
   clear: left;
   list-style-type: square;
