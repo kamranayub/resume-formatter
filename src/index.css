@@ -52,7 +52,8 @@ ul {
 }
 
 @media print {
-  .hide-print, button {
+  .hide-print,
+  button {
     display: none;
   }
 }
@@ -69,9 +70,18 @@ ul {
  */
 .top-of-page {
   text-align: center;
+  background: #eee;
+  margin: -1em;
+  margin-bottom: 1em;
+  padding: 1em;
 }
 .top-of-page button {
   margin: 0 1em;
+}
+@media print {
+  .top-of-page {
+    display: none;
+  }
 }
 
 /**
@@ -83,8 +93,10 @@ button.add-section {
   margin-left: 1em;
   top: -1em;
 }
-button.add-section + section {
-  margin-top: -1.3em;
+@media screen {
+  button.add-section + section {
+    margin-top: -1.3em;
+  }
 }
 
 /**

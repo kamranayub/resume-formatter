@@ -3,31 +3,45 @@ import TextEditor from "./editors/TextEditor.vue";
 
 const STORAGE_CONTAINER = "resume-0.1";
 const DEFAULTS = {
-  fullName: "Full Name",
-  byline: "Byline",
-  aboutMe: "Introduction and overview",
+  fullName: "Fox",
+  byline:
+    "Look, sir. Look, sir. Mr. Knox, sir. Let's do tricks with bricks and blocks, sir.",
+  aboutMe: `We\'ll find something new to do now.
+Here is lots of new blue goo now.
+New goo.  Blue goo.
+Gooey.  Gooey.
+Blue goo.  New goo.
+Gluey. Gluey.
+
+Gooey goo for chewy chewing!
+That's what that Goo-Goose is doing.
+Do you choose to chew goo, too, sir?
+If, sir, you, sir, choose to chew, sir, 
+with the Goo-Goose, chew, sir.
+Do, sir.`,
   links: [
     {
-      text: "name@company.com",
+      text: "fox@insocks.com",
     },
     {
-      text: "555-444-9999",
+      text: "1-800-FOX-SOCK",
     },
   ],
   history: [
     {
-      employer: "Employer",
-      location: "Location",
-      start: "Start",
-      end: "End",
+      employer: "Dr. Seuss, Inc.",
+      location: "Ann Arbor, MI",
+      start: "Sep 2010",
+      end: "Present",
       positions: [
         {
-          name: "Team or position",
-          byline: "Explanation",
-          skills: "Skills used in role",
-          description: "Role overview and accomplishments",
-          start: "Start",
-          end: "End",
+          name: "Fox in Socks",
+          byline: "Knox in box. Fox on Knox in box.",
+          skills: "Tongue twisters, tweedle beedle battler, puddle muddler",
+          description:
+            "Makes parents read his book to his kids all day every day",
+          start: "Sep 2010",
+          end: "Present",
         },
       ],
     },
@@ -50,7 +64,7 @@ const DEFAULTS = {
     },
   ],
   education: {
-    school: "School of Subtle Knox",
+    school: "School of Tongues",
     byline: "College of Socks on Fox",
     degree: "Bachelors of Tweedle Beedle Puddle Battles",
     location: "Grox, MT",
@@ -110,10 +124,16 @@ export default {
         ...DEFAULTS.history[0],
       });
     },
+    removeEmployer(index) {
+      this.history.splice(index, 1)
+    },
     addPosition(employer) {
       employer.positions.push({
         ...DEFAULTS.history[0].positions[0],
       });
+    },
+    removePosition(employer, index) {
+      employer.positions.splice(index, 1);
     },
     addSection() {
       this.sections.push({ ...DEFAULTS.sections[0] });
@@ -127,8 +147,10 @@ export default {
 
 <template>
   <div class="top-of-page">
-    <button @click="reset">Start over</button>
-    <button @click="print">Print to PDF</button>
+    <button @click="reset">
+      <i class="fa fa-trash-restore"></i> Start over
+    </button>
+    <button @click="print"><i class="fa fa-print"></i> Print to PDF</button>
   </div>
 
   <div class="resume">
@@ -178,7 +200,7 @@ export default {
       </h2>
 
       <div class="content">
-        <div v-for="item in history">
+        <div v-for="(item, index) in history">
           <div class="section-header">
             <div class="section-desc">
               <h3><text-editor v-model="item.employer" /></h3>
@@ -192,7 +214,7 @@ export default {
             </ul>
           </div>
 
-          <div v-for="position in item.positions">
+          <div v-for="(position, index) in item.positions">
             <div class="section-header">
               <div class="section-desc">
                 <h4><text-editor v-model="position.name" /></h4>
@@ -215,6 +237,10 @@ export default {
 
               <text-editor v-model="position.description" />
             </div>
+
+            <button @click="removePosition(item, index)">
+              <i class="fa fa-minus-circle"></i> remove position
+            </button>
           </div>
 
           <p>
@@ -222,6 +248,10 @@ export default {
               <i class="fa fa-plus-circle"></i> add position
             </button>
           </p>
+
+          <button @click="removeEmployer(index)">
+              <i class="fa fa-minus-circle"></i> remove employer
+            </button>
         </div>
         <p>
           <button @click="addEmployer">
