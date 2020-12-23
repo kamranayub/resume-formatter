@@ -34,12 +34,12 @@ export default {
   },
   methods: {
     addContactInfo() {
-      this.links = [
-        ...this.links,
-        {
-          text: "123 Abc Ln N",
-        },
-      ];
+      this.links.push({
+        text: "123 Abc Ln N",
+      });
+    },
+    removeContactInfo(index) {
+      this.links.splice(index, 1);
     },
   },
   components: {
@@ -59,7 +59,7 @@ export default {
       </section>
 
       <ul id="contact">
-        <li v-for="link in links">
+        <li v-for="(link, index) in links">
           <i
             v-if="link.iconClass"
             class="fa fa-icon"
@@ -68,8 +68,20 @@ export default {
           <text-editor v-model="link.text" /><span v-if="link.url"
             >/<a href="{{link.url}}">{{ link.path }}</a></span
           >
+          <button
+            class="hide-print"
+            @click="removeContactInfo(index)"
+            title="Remove contact info"
+            aria-label="remove item"
+          >
+            <i class="fa fa-minus-circle"></i>
+          </button>
         </li>
-        <li><button @click="addContactInfo">+ add contact info</button></li>
+        <li>
+          <button class="hide-print" @click="addContactInfo">
+            + add contact info
+          </button>
+        </li>
       </ul>
     </header>
 

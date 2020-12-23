@@ -51,6 +51,12 @@ ul {
   padding: 0;
 }
 
+@media print {
+  .hide-print {
+    display: none;
+  }
+}
+
 @media print, (min-width: 1070px) {
   .half {
     width: 50%;
