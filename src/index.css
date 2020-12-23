@@ -70,6 +70,16 @@ ul {
 }
 
 /**
+ * Top of page
+ */
+.top-of-page {
+  text-align: center;
+}
+.top-of-page button {
+  margin: 0 1em;
+}
+
+/**
  * Header styles
  */
 header {
@@ -151,13 +161,6 @@ header ul:focus-within li:last-child button {
   float: right;
   width: 190px;
   text-align: right;
-}
-.resume > section .qr-code img {
-  max-width: 100%;
-}
-.resume > section .qr-code em {
-  font-style: normal;
-  color: #808080;
 }
 .resume > section h2 {
   padding-top: 1em;

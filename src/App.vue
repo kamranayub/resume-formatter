@@ -2,17 +2,41 @@
 import TextEditor from "./editors/TextEditor.vue";
 
 const STORAGE_CONTAINER = "resume-0.1";
+const DEFAULTS = {
+  fullName: "Full Name",
+  byline: "Byline",
+  aboutMe: "Introduction and overview",
+  links: [
+    {
+      text: "name@company.com",
+    },
+    {
+      text: "555-444-9999",
+    },
+  ],
+  history: [
+    {
+      employer: "Employer",
+      location: "Location",
+      start: "Start",
+      end: "End",
+      positions: [
+        {
+          name: "Team or position",
+          byline: "Explanation",
+          skills: "Skills used in role",
+          description: "Role overview and accomplishments",
+          start: "Start",
+          end: "End",
+        },
+      ],
+    },
+  ],
+};
 
 export default {
   name: "App",
   data() {
-    const DEFAULTS = {
-      fullName: "Full Name",
-      byline: "Byline",
-      aboutMe: "Introduction and overview",
-      links: [],
-    };
-
     let dataFromStorage;
     if (window.localStorage) {
       dataFromStorage = window.localStorage.getItem(STORAGE_CONTAINER);
@@ -33,6 +57,22 @@ export default {
     }
   },
   methods: {
+    reset() {
+      const areYouSure = window.confirm(
+        "Are you sure? This will remove all your saved data."
+      );
+
+      if (areYouSure && window.localStorage) {
+        window.localStorage.setItem(
+          STORAGE_CONTAINER,
+          JSON.stringify(DEFAULTS)
+        );
+        window.location.reload();
+      }
+    },
+    print() {
+      window.print();
+    },
     addContactInfo() {
       this.links.push({
         text: "123 Abc Ln N",
@@ -49,6 +89,11 @@ export default {
 </script>
 
 <template>
+  <div class="top-of-page">
+    <button @click="reset">Start over</button>
+    <button @click="print">Print to PDF</button>
+  </div>
+  
   <div class="resume">
     <header>
       <section>
@@ -97,32 +142,44 @@ export default {
       </h2>
 
       <div class="content">
-        <div class="section-header">
-          <div class="section-desc">
-            <h3>Employer</h3>
+        <div v-for="item in history">
+          <div class="section-header">
+            <div class="section-desc">
+              <h3><text-editor v-model="item.employer" /></h3>
+            </div>
+            <ul class="section-date">
+              <li><text-editor v-model="item.location" /></li>
+              <li>
+                <text-editor v-model="item.start" /> &mdash;
+                <text-editor v-model="item.end" />
+              </li>
+            </ul>
           </div>
-          <ul class="section-date">
-            <li>Location</li>
-            <li>Start &mdash; End</li>
-          </ul>
-        </div>
 
-        <div class="section-header">
-          <div class="section-desc">
-            <h4>Team or Position</h4>
-            <h5>Role</h5>
+          <div v-for="position in item.positions">
+            <div class="section-header">
+              <div class="section-desc">
+                <h4><text-editor v-model="position.name" /></h4>
+                <h5><text-editor v-model="position.byline" /></h5>
+              </div>
+              <ul class="section-date">
+                <li>
+                  <text-editor v-model="position.start" /> &mdash;
+                  <text-editor v-model="position.end" />
+                </li>
+              </ul>
+            </div>
+
+            <p class="inline-skills">
+              <text-editor v-model="position.skills" />
+            </p>
+
+            <div class="words">
+              <!--<img class="right" src="img/icon.svg" width="90" />-->
+
+              <text-editor v-model="position.description" />
+            </div>
           </div>
-          <ul class="section-date">
-            <li>Start &mdash; End</li>
-          </ul>
-        </div>
-
-        <p class="inline-skills">Skills used in role</p>
-
-        <div class="words">
-          <!--<img class="right" src="img/icon.svg" width="90" />-->
-
-          <p>Role overview and accomplishments</p>
         </div>
       </div>
     </section>
