@@ -10,6 +10,7 @@ export default {
       fullName: "Full Name",
       byline: "Byline",
       aboutMe: "Introduction and overview",
+      links: [],
     };
 
     let dataFromStorage;
@@ -31,6 +32,16 @@ export default {
       );
     }
   },
+  methods: {
+    addContactInfo() {
+      this.links = [
+        ...this.links,
+        {
+          text: "123 Abc Ln N",
+        },
+      ];
+    },
+  },
   components: {
     TextEditor,
   },
@@ -48,9 +59,17 @@ export default {
       </section>
 
       <ul id="contact">
-        <li>
-          <i class="fa fa-icon">icon</i> label/<a href="https://link">name</a>
+        <li v-for="link in links">
+          <i
+            v-if="link.iconClass"
+            class="fa fa-icon"
+            :class="[link.iconClass]"
+          ></i>
+          <text-editor v-model="link.text" /><span v-if="link.url"
+            >/<a href="{{link.url}}">{{ link.path }}</a></span
+          >
         </li>
+        <li><button @click="addContactInfo">+ add contact info</button></li>
       </ul>
     </header>
 
