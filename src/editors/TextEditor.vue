@@ -17,15 +17,14 @@ export default {
 
 <template>
   <span class="editor text">
-    <span class="editor-inner">
-      <span
-        ref="textValue"
-        @click="enableEditing"
-        @blur="endEditing"
-        contenteditable="true"
-        >{{ modelValue }}</span
-      >
-    </span>
+    <span
+      class="editor-inner"
+      ref="textValue"
+      @click="enableEditing"
+      @blur="endEditing"
+      contenteditable="true"
+      >{{ modelValue }}</span
+    >
   </span>
 </template>
 

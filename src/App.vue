@@ -123,7 +123,6 @@ export default {
       <ul id="contact">
         <li v-for="(link, index) in links">
           <button
-            class="hide-print"
             @click="removeContactInfo(index)"
             title="Remove contact info"
             aria-label="remove item"
@@ -133,7 +132,7 @@ export default {
           <text-editor v-model="link.text" />
         </li>
         <li>
-          <button class="hide-print" @click="addContactInfo">
+          <button @click="addContactInfo">
             <i class="fa fa-plus-circle"></i> add contact info
           </button>
         </li>
@@ -199,13 +198,13 @@ export default {
           </div>
 
           <p>
-            <button class="hide-print" @click="addPosition(item)">
+            <button @click="addPosition(item)">
               <i class="fa fa-plus-circle"></i> add position
             </button>
           </p>
         </div>
         <p>
-          <button class="hide-print" @click="addEmployer">
+          <button @click="addEmployer">
             <i class="fa fa-plus-circle"></i> add employer
           </button>
         </p>

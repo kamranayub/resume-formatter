@@ -52,7 +52,7 @@ ul {
 }
 
 @media print {
-  .hide-print {
+  .hide-print, button {
     display: none;
   }
 }
