@@ -212,11 +212,6 @@ export default {
     <section>
       <h2>
         Relevant Experience
-        <small
-          >For complete employment history, see my
-          <a href="https://linkedin.com/">LinkedIn</a>
-          profile</small
-        >
       </h2>
 
       <div class="content">
