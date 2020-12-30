@@ -1,0 +1,6 @@
+- Fix clicking to place cursor and it selecting all
+- Fix last section group and next section group pointing to same group object list
+- Ability to rearrange sections
+- Ability to add education items
+- Rich text support (line breaks, bold, italic, links, etc.)
+- Selection of empty elements
